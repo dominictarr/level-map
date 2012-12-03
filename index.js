@@ -34,16 +34,17 @@ module.exports = function (db) {
       }
     })
 
-    db.map.start = function (name, done) {
-      var rs = db.readStream(views[name])
-        .pipe(map(function (data, next) {
-          doMap(views[name], data, next)  
-        }))
-      if(done) rs.on('end', done)
-    }
-    db.map.view = viewStream(db, db.map)
   }
 
+  db.map.start = function (name, done) {
+    var rs = db.readStream(views[name])
+      .pipe(map(function (data, next) {
+        doMap(views[name], data, next)  
+      }))
+    if(done) rs.on('end', done)
+  }
+
+  db.map.view = viewStream(db, db.map)
   function doMap (view, data, done) {
     var keys = [], sync = true, self = this, batch = []
 
