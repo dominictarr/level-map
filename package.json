@@ -1,0 +1,27 @@
+{
+  "name": "level-map",
+  "version": "0.0.0",
+  "homepage": "https://github.com/dominictarr/level-map",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dominictarr/level-map.git"
+  },
+  "dependencies": {
+    "level-view-stream": "~0.0.1",
+    "level-trigger": "~0.1.0",
+    "level-live-stream": "~0.1.0",
+    "range-bucket": "0.0.6",
+    "map-stream": "0.0.1"
+  },
+  "devDependencies": {
+    "through": "~2.1.0",
+    "macgyver": "~1.9.2",
+    "rimraf": "~2.0.2",
+    "levelup": "~0.3.2"
+  },
+  "scripts": {
+    "test": "set -e; for t in test/*.js; do node $t; done"
+  },
+  "author": "'Dominic Tarr' <dominic.tarr@gmail.com> (http://dominictarr.com)",
+  "license": "MIT"
+}
