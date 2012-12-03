@@ -1,5 +1,5 @@
 
-var map = require('../map')
+var map = require('..')
 var levelup = require('levelup')
 var rimraf  = require('rimraf')
 var assert  = require('assert')
