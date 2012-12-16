@@ -23,12 +23,23 @@ module.exports = function (db) {
     if('function' !== typeof view.map) throw new Error('expected map function')
     views[name] = view
     view.bucket = Bucket('mapr', name)
-    
+    view.keyMap = view.keyMap || function (data) {
+      return data.key
+    }
+    view.load = view.load || function (key, cb) {
+      db.get(key, cb)
+    }
+
     db.trigger.add({
       start: view.start,
+      name : 'TR-'+name,
       end  : view.end,
+      map  : view.keyMap,
       job  : function (key, done) {
-        db.get(key, function (err, value) {
+        //expose a LOAD method...
+        //and use trigger-map to remove the timestamp from the job.
+        //(so you don't queue a different job for each update)
+        view.load(key, function (err, value) {
           doMap(view, {key: key, value: value}, done)
         })
       }
@@ -45,6 +56,7 @@ module.exports = function (db) {
   }
 
   db.map.view = viewStream(db, db.map)
+
   function doMap (view, data, done) {
     var keys = [], sync = true, self = this, batch = []
 
