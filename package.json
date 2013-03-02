@@ -7,9 +7,9 @@
     "url": "git://github.com/dominictarr/level-map.git"
   },
   "dependencies": {
-    "level-view-stream": "~0.0.5",
+    "level-view-stream": "~0.1",
     "level-trigger": "~0.1.0",
-    "level-live-stream": "~0.1.0",
+    "level-live-stream": "~0.1",
     "range-bucket": "0.0.6",
     "map-stream": "0.0.1"
   },
